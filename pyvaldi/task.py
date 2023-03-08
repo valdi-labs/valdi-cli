@@ -7,7 +7,8 @@ def list_tasks(args):
 
 
 def get_task(args):
-    print(f"List task {args.task_id}")
+    task_client = TaskClient()
+    task_client.get_task(args.task_id)
 
 
 def submit_task(args):
