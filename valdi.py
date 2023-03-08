@@ -1,6 +1,6 @@
-from valdi.account import configure
-from valdi.repository import list_repositories
-from valdi.task import get_task, submit_task, submit_tasks
+from pyvaldi.account import configure
+from pyvaldi.repository import list_repositories
+from pyvaldi.task import list_tasks, get_task, submit_task, submit_tasks
 import argparse
 
 
@@ -26,6 +26,10 @@ if __name__ == "__main__":
     # Sub-parsers for task management
     task_parser = subparsers.add_parser('task', help='Manage your computational tasks')
     task_subparsers = task_parser.add_subparsers(dest='subcommand')
+
+    # Parser for listing tasks
+    task_list_parser = task_subparsers.add_parser('ls', help='List your current and past tasks')
+    task_list_parser.set_defaults(func=list_tasks)
 
     # Parser for getting a task
     task_get_parser = task_subparsers.add_parser('get', help='Get the details of a task')

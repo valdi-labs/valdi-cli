@@ -17,7 +17,7 @@ def account_login(email, password):
     return response
 
 
-def refresh_access_token(refresh_token):
+def account_refresh_token(refresh_token):
     response = requests.request(method='POST',
                                 url=f'{base_url}/account/refresh_token',
                                 headers={'Content-Type': 'application/json'},

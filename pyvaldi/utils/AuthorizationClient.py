@@ -1,6 +1,5 @@
 from getpass import getpass
-from pathlib import Path
-import valdi.utils.api.auth as auth
+import pyvaldi.utils.api.auth as auth
 import json
 import os
 
@@ -9,11 +8,13 @@ credential_file = 'token'
 
 
 class AuthorizationClient:
-    def __init__(self):
+    def __init__(self, reconfigure=False):
         self.refresh_token = None
         self.access_token = None
 
         try:
+            if reconfigure:
+                raise Exception
             with open(f'{credential_loc}/{credential_file}', 'r') as f:
                 self.refresh_token = f.read()
                 self.refresh_access_token()
@@ -41,7 +42,7 @@ class AuthorizationClient:
             return False
 
     def refresh_access_token(self):
-        response = auth.refresh_access_token(self.refresh_token)
+        response = auth.account_refresh_token(self.refresh_token)
 
         if response.ok:
             json_resp = json.loads(response.text)
