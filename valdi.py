@@ -1,6 +1,6 @@
 from pyvaldi.account import configure
 from pyvaldi.repository import list_repositories
-from pyvaldi.task import list_tasks, get_task, submit_task, submit_tasks
+from pyvaldi.task import list_tasks, construct_task, get_task, submit_task, submit_tasks
 import argparse
 
 
@@ -32,9 +32,13 @@ if __name__ == "__main__":
     task_list_parser.set_defaults(func=list_tasks)
 
     # Parser for getting a task
-    task_get_parser = task_subparsers.add_parser('get', help='Get the details of a task')
+    task_get_parser = task_subparsers.add_parser('get', help='Get the details of a specific task')
     task_get_parser.add_argument('task_id', help='ID of task to retrieve')
     task_get_parser.set_defaults(func=get_task)
+
+    # Parser for constructing a task definition
+    task_construct_parser = task_subparsers.add_parser('create', help='Create a task definition')
+    task_construct_parser.set_defaults(func=construct_task)
 
     # Parser for submitting a task
     task_submit_parser = task_subparsers.add_parser('submit', help='Submit a single task')

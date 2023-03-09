@@ -11,6 +11,10 @@ def get_task(args):
     task_client.get_task(args.task_id)
 
 
+def construct_task(args):
+    print("Construct task!")
+
+
 def submit_task(args):
     print(f"Submit task {args.task_definition}")
 
